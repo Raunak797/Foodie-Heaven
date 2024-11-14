@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOODIE HAVEN</title>
+    <style>
+        body {
+            background-image:url(images/background\ image.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        label{
+            display: block;
+            color:black;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        input[type="email"],input[type="number"],input[type="password"]
+        {
+            width: 400px;
+            height: 40px;
+            padding: 10px;
+            border:4px solid black;
+            border-radius: 10px;
+            background-color: white;
+        }
+        input:focus
+        {
+            background-color: rgb(212, 49, 174);
+        }
+        input[type="submit"]
+        {
+            background-color: red;
+            padding:10px;
+            height:60px;
+            width:420px;
+            color:white;
+            font-size: 20px;
+            font-weight: bold;
+            border: 4px solid black;
+            border-radius: 10px;
+        }
+        input[type="submit"]:hover
+        {
+            background-color: orange;
+            transform: scale(1.5);
+        }
+        h1{
+            font-weight: bold;
+            font-size: 50px;
+            color: rgb(42, 165, 87);
+            
+        }
+        h1:hover
+        {
+            color: rgb(185, 172, 157);
+            
+        
+        }
+        div{
+            
+            border: 10px solid rgb(19, 9, 78);
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function sub()
+        {
+        var a=document.getElementById('uid').Value;
+        var b=document.getElementById('mob').value;
+        var c=document.getElementById('pass').value;
+        var d=document.getElementById('cnfm').value;
+        if(a=="" || b=="" || c=="" || d=="")
+    {
+        alert("all fields are mandatory");
+        return false;
+    }
+    else if(b.length<10 || b.length>10){
+        alert("mob no. invalid");
+        return false;
+    }
+    else if(isNaN(b)){
+        alert("mobile number should be digit only");
+        return false;
+    }
+    else if(c!=d){
+        alert("please enter the same password");
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+    
+    
+    
+
+    
+    </script>
+    
+    
+        
+    <form onsubmit="return sub()" action="index.html" method="get">
+        <div>
+        <center><h1>Login</h1></center>
+        <label for="uid">email id</label>
+        <input type="email" id="uid"><br>
+        <label for="mob">mobile No.</label> 
+        <input type="number" id="mob"><br>
+        <label for="password">password</label>
+        <input type="password" id="pass"><br>
+        <label for="cnf">confirm password:</label>
+        <input type="password" id="cnfm"><br><br>
+        <input type="submit" value="login">
+        </div>
+    </form>   
+</body>
+</html>

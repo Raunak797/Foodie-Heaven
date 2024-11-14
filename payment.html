@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Payment Page</title>
+    <style>
+        /* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Container styling */
+.payment-container {
+    
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    text-align: center;
+    
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #d6d610;
+}
+
+/* Input and button styling */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #610b0b;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.card-details {
+    display: flex;
+    gap: 10px;
+}
+
+.card-details div {
+    flex: 1;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><h1>Foodie Heaven</h1></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="pizzapage.html">Pizza</a></li>
+                <li><a href="burgerpage.html">Burgers</a></li>
+                <li><a href="drinkspage.html">Beverages</a></li>
+                <li><a href="desert.html">Desserts</a></li>
+                <li><a href="login.html"><button class="btn">login</button></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="payment-container">
+        <h2>Payment Information</h2>
+        <form id="paymentForm">
+            <label for="cardName">Cardholder Name</label>
+            <input type="text" id="cardName" name="cardName" required>
+
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" name="cardNumber" maxlength="16" required>
+
+            <div class="card-details">
+                <div>
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+                </div>
+                <div>
+                    <label for="cvv">CVV</label>
+                    <input type="password" id="cvv" name="cvv" maxlength="3" required>
+                </div>
+            </div>
+
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" name="amount" required>
+
+            <a href="order.html"><button type="submit">Paynow</button></a>
+        </form>
+        <p id="message"></p>
+    </div>
+    <script>
+        // Basic form validation
+document.getElementById("paymentForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const cardNumber = document.getElementById("cardNumber").value;
+    const expiry = document.getElementById("expiry").value;
+    const cvv = document.getElementById("cvv").value;
+    const amount = document.getElementById("amount").value;
+
+    // Check if the card number is valid (length 16 digits)
+    if (!/^\d{16}$/.test(cardNumber)) {
+        showMessage("Please enter a valid 16-digit card number.");
+        return;
+    }
+
+    // Check if expiry date is in MM/YY format
+    if (!/^(0[1-9]|1[0-2])\/?([0-9]{2})$/.test(expiry)) {
+        showMessage("Please enter a valid expiry date in MM/YY format.");
+        return;
+    }
+
+    // Check if CVV is 3 digits
+    if (!/^\d{3}$/.test(cvv)) {
+        showMessage("Please enter a valid 3-digit CVV.");
+        return;
+    }
+
+    // Check if amount is valid
+    if (isNaN(amount) || amount <= 0) {
+        showMessage("Please enter a valid amount.");
+        return;
+    }
+
+    // If all validations pass
+    // showMessage("Payment successful! Thank you.", "success");
+
+    window.location.href="order.html";
+});
+
+// Function to show messages
+function showMessage(message, type = "error") {
+    const messageElem = document.getElementById("message");
+    messageElem.textContent = message;
+    messageElem.style.color = type === "error" ? "red" : "green";
+}
+
+    </script>
+</body>
+</html>
