@@ -24,6 +24,7 @@ body {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
+     
     background-color: #ffffff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -170,5 +171,46 @@ h1 {
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6821.539321670383!2d75.69919664288689!3d31.2547991973461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5f5e9c489cf3%3A0x4049a5409d53c300!2sLovely%20Professional%20University!5e0!3m2!1sen!2sin!4v1731590444079!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
+    <script>
+        // Wait for the DOM to fully load
+        document.addEventListener("DOMContentLoaded", function () {
+            const contactForm = document.querySelector("form");
+
+            // Form submission handler
+            contactForm.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission
+                
+                // Get form values
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const subject = document.getElementById("subject").value.trim();
+                const message = document.getElementById("message").value.trim();
+
+                // Validate the form
+                if (!name || !email || !message) {
+                    alert("Please fill in all required fields.");
+                    return;
+                }
+
+                if (!validateEmail(email)) {
+                    alert("Please enter a valid email address.");
+                    return;
+                }
+
+                // Simulate a successful form submission
+                alert("Thank you for reaching out! We'll get back to you shortly.");
+                
+                // Clear the form fields
+                contactForm.reset();
+            });
+
+            // Email validation function
+            function validateEmail(email) {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailPattern.test(email);
+            }
+        });
+
+    </script>
 </body>
 </html>
